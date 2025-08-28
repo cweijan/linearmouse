@@ -227,6 +227,12 @@ class DeviceManager: ObservableObject {
     }
 
     func updatePointerSpeed(for device: Device) {
+        // 不修改触摸板的指针行为
+        if device.category == .trackpad {
+            os_log("Skip updating pointer speed/acceleration for trackpad: %{public}@", log: Self.log, type: .info, String(describing: device))
+            return
+        }
+
         let frontmostApp = NSWorkspace.shared.frontmostApplication
         let scheme = ConfigurationState.shared.configuration.matchScheme(
             withDevice: device,

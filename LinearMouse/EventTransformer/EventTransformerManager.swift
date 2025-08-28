@@ -94,6 +94,16 @@ class EventTransformerManager {
             return eventTransformer
         }
 
+        // 如果是触控板设备，直接返回空变换，确保不修改触摸板行为
+        if let device, device.category == .trackpad {
+            os_log(
+                "Return noop transformer because the device is trackpad",
+                log: Self.log,
+                type: .info
+            )
+            return []
+        }
+
         let scheme = ConfigurationState.shared.configuration.matchScheme(
             withDevice: device,
             withPid: pid,
