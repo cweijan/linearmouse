@@ -5,7 +5,7 @@ import Foundation
 
 enum LinearMouse {
     static var appBundleIdentifier: String {
-        Bundle.main.infoDictionary?[kCFBundleIdentifierKey as String] as? String ?? "com.lujjjh.LinearMouse"
+        Bundle.main.infoDictionary?[kCFBundleIdentifierKey as String] as? String ?? "com.cweijan.LinearMouse"
     }
 
     static var appName: String {

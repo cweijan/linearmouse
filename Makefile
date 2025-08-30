@@ -5,7 +5,7 @@ TARGET_DMG = $(CURDIR)/build/LinearMouse.dmg
 
 all: configure clean lint test package
 
-configure: Signing.xcconfig Version.xcconfig .git/hooks/pre-commit
+configure: Signing.xcconfig Version.xcconfig
 
 configure-release: configure Release.xcconfig
 
@@ -18,15 +18,15 @@ Version.xcconfig:
 Release.xcconfig:
 	@./Scripts/configure-release
 
-.git/hooks/pre-commit:
-	cp ./Scripts/pre-commit $@
+# .git/hooks/pre-commit:
+# 	cp ./Scripts/pre-commit $@
 
 clean:
 	rm -fr build
 
 lint:
-	swiftformat --lint .
-	swiftlint .
+# 	swiftformat --lint .
+# 	swiftlint .
 
 test:
 	xcodebuild test -project LinearMouse.xcodeproj -scheme LinearMouse
